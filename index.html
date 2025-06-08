@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Permohonan Maaf ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #2d1b69 50%, #1a0033 100%);
+            color: #e5e5e5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .particle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(139, 0, 139, 0.6);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(139, 0, 139, 0.1), transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .profile-section {
+            margin-bottom: 50px;
+            animation: fadeInUp 1.5s ease;
+        }
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #8b008b, #4b0082);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 3rem;
+            box-shadow: 0 0 30px rgba(139, 0, 139, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 30px rgba(139, 0, 139, 0.5); }
+            to { box-shadow: 0 0 50px rgba(139, 0, 139, 0.8); }
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #8b008b, #ff69b4, #8b008b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes textGlow {
+            from { text-shadow: 0 0 20px rgba(139, 0, 139, 0.5); }
+            to { text-shadow: 0 0 40px rgba(139, 0, 139, 0.8); }
+        }
+        .hero p {
+            font-size: 1.3rem;
+            color: #c0c0c0;
+            max-width: 800px;
+            line-height: 1.8;
+            animation: fadeInUp 1.5s ease 0.5s both;
+        }
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, #8b008b, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #8b008b, #ff69b4);
+            border-radius: 2px;
+        }
+        .experience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        .experience-card {
+            background: rgba(20, 20, 40, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(139, 0, 139, 0.3);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 0, 139, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        .experience-card:hover::before {
+            left: 100%;
+        }
+        .experience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(139, 0, 139, 0.3);
+            border-color: rgba(139, 0, 139, 0.6);
+        }
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #8b008b, #4b0082);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #ff69b4;
+            margin-bottom: 10px;
+        }
+        .card-description {
+            color: #c0c0c0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .project-showcase {
+            display: grid;
+            gap: 60px;
+            margin-top: 60px;
+        }
+        .project {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 40px;
+            background: rgba(20, 20, 40, 0.6);
+            border-radius: 25px;
+            border: 1px solid rgba(139, 0, 139, 0.2);
+            transition: all 0.4s ease;
+        }
+        .project:nth-child(even) {
+            direction: rtl;
+        }
+        .project:nth-child(even) * {
+            direction: ltr;
+        }
+        .project:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 50px rgba(139, 0, 139, 0.2);
+        }
+        .project-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, #1a0033, #2d1b69);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #8b008b;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(139, 0, 139, 0.2), transparent 70%);
+            animation: projectGlow 3s ease-in-out infinite alternate;
+        }
+        @keyframes projectGlow {
+            from { opacity: 0.3; }
+            to { opacity: 0.8; }
+        }
+        .project-content h3 {
+            font-size: 1.8rem;
+            color: #ff69b4;
+            margin-bottom: 15px;
+        }
+        .project-content p {
+            color: #c0c0c0;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        .tech-stack {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .tech-tag {
+            padding: 5px 12px;
+            background: rgba(139, 0, 139, 0.2);
+            border: 1px solid rgba(139, 0, 139, 0.4);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #ff69b4;
+        }
+        .apology-timeline {
+            position: relative;
+            margin: 60px 0;
+        }
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #8b008b, #ff69b4, #8b008b);
+            transform: translateX(-50%);
+        }
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .timeline-content {
+            flex: 1;
+            padding: 30px;
+            background: rgba(20, 20, 40, 0.8);
+            border-radius: 20px;
+            border: 1px solid rgba(139, 0, 139, 0.3);
+            margin: 0 30px;
+            position: relative;
+        }
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #8b008b;
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -40px;
+        }
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -40px;
+        }
+        .timeline-date {
+            font-size: 0.9rem;
+            color: #ff69b4;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .timeline-text {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .skill-item {
+            background: rgba(20, 20, 40, 0.6);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 0, 139, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .skill-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(139, 0, 139, 0.2);
+        }
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .skill-name {
+            color: #ff69b4;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .skill-level {
+            color: #c0c0c0;
+            font-size: 0.9rem;
+        }
+        .final-section {
+            text-align: center;
+            padding: 100px 20px;
+            background: radial-gradient(circle, rgba(139, 0, 139, 0.1), transparent 70%);
+        }
+        .final-message {
+            font-size: 1.5rem;
+            color: #e5e5e5;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-style: italic;
+            position: relative;
+        }
+        .final-message::before,
+        .final-message::after {
+            content: '"';
+            font-size: 4rem;
+            color: #8b008b;
+            position: absolute;
+            top: -20px;
+        }
+        .final-message::before {
+            left: -40px;
+        }
+        .final-message::after {
+            right: -40px;
+            bottom: -60px;
+            top: auto;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .project { grid-template-columns: 1fr; }
+            .timeline-line { display: none; }
+            .timeline-item { flex-direction: column !important; }
+            .timeline-content { margin: 0; }
+            .timeline-content::before { display: none; }
+            .final-message::before,
+            .final-message::after { display: none; }
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="profile-section">
+            <div class="profile-image">💔</div>
+            <h1>love u cil</h1>
+            <p>aku gatau harus ngomong apa, aku minta maaf pun gapantes ngomongnya, intinya tolong liat perubahan aku yaaa!</p>
+        </div>
+    </section>
+
+   <!-- Kenangan Kita -->
+<section class="section">
+    <h2 class="section-title">kata asna harus izin 2 orang ini dulu</h2>
+    <div class="gallery">
+        <!-- Foto 1 -->
+        <div class="photo-card fade-in">
+            <img src="images/fotoraraa.jpg" alt="Foto Rara" />
+            <p class="photo-caption">Makasih banyak ya Rara udah mau support anak-anak kontrakan. Maafin kalau udah bikin Asna sedih.</p>
+        </div>
+
+        <!-- Foto 2 -->
+        <div class="photo-card fade-in">
+            <img src="images/fotolulu.jpg" alt="Foto Lulu" />
+            <p class="photo-caption">Makasih juga ya Lulu udah jadi anjing-anjingin gua</p>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="photo-card fade-in">
+            <img src="images/fotobertiga.jpg" alt="Foto Bertiga" />
+            <p class="photo-caption">Makasih buat kalian berdua udah mau support Asna terus ❤️</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Timeline -->
+    <section class="section">
+        <h2 class="section-title">our timeline</h2>
+        <div class="apology-timeline">
+            <div class="timeline-line"></div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">5 Juli 2022</div>
+                    <div class="timeline-text">Hari dimana lo ngechat gue di ig "kenal aku ga?" WKWKWKWK</div>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">11 Agustus 2022</div>
+                    <div class="timeline-text">Hari pertama kali kita ketemuuuu!!</div>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">5 juni 2025</div>
+                    <div class="timeline-text">Hari dimanaa aku ngancurin kepercayaan semua orang, im so sorry</div>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">... .... 202?</div>
+                    <div class="timeline-text">hari kamu sembuh dari apa yang uda aku buat</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+    <h2 class="section-title">mewmorhay</h2>
+    <div class="gallery">
+        <!-- Foto 1 -->
+        <div class="photo-card fade-in">
+            <img src="images/foto4.jpg" alt="Foto Rara" />
+            <p class="photo-caption">2 Malaikat kamu, yang selalu ada buat kamu, ga kaya aku</p>
+        </div>
+
+        <!-- Foto 2 -->
+        <div class="photo-card fade-in">
+            <img src="images/malaikatumi.jpg" alt="Foto Lulu" />
+            <p class="photo-caption">malaikatt kicill merekaa berduaa</p>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="photo-card fade-in">
+            <img src="images/aiu.jpg" alt="Foto Bertiga" />
+            <p class="photo-caption">fk i rly miss this</p>
+        </div>
+    </div>
+</section>
+
+    </section>
+    <section class="section">
+    <h2 class="section-title">mewmorhi</h2>
+    <div class="gallery">
+        <!-- Foto 1 -->
+        <div class="photo-card fade-in">
+            <img src="images/foto1.jpg" alt="Foto Rara" />
+            <p class="photo-caption">ini pertama kali kita main, disini aku berantem dulu ama bunda WKWKWKWK</p>
+        </div>
+
+        <!-- Foto 2 -->
+        <div class="photo-card fade-in">
+            <img src="images/foto2.jpg" alt="Foto Lulu" />
+            <p class="photo-caption">ini hari dimana aku ngodek ngodek wastafel hehehe, mau ngurusin kaya gitu lagi cuma tunggu kamuu sembuh dulu yaa</p>
+        </div>
+
+        <!-- Foto 3 -->
+        <div class="photo-card fade-in">
+            <img src="images/foto3.jpg" alt="Foto Bertiga" />
+            <p class="photo-caption">ini pertamaa kali kamu ke jakartaa, kamuu gaada siapa siapa disinii aaaaa</p>
+        </div>
+    </div>
+</section>
+    <!-- Pesan Akhir -->
+    <section class="final-section">
+        <div class="final-message fade-in">
+            aku tau walaupun aku udah seberubah se gimanapun dann apapun itu, pasti luka ini bakalan susah buat di sembuhin, tapi aku janji bakal berubah dan kamu juga pelan pelan buat sembuh, kejadian ini bener bener ngerubah aku, thankuu for loving me, asna mufidah wiandari
+        </div>
+    </section>
+
+    <script>
+        function createParticles() {
+            const particles = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particles.appendChild(particle);
+            }
+        }
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        createParticles();
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
